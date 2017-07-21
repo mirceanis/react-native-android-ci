@@ -16,7 +16,7 @@ RUN apt-get update \
     net-tools \
     netcat \
     unzip \
-    build-essentials
+    build-essential
 
 
 # Install Android SDK
