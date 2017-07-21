@@ -16,12 +16,13 @@ RUN apt-get update \
     net-tools \
     netcat \
     unzip \
-    build-essential
+    build-essential \
+    && apt-get -y autoclean \
+    && apt-get -y autoremove
 
 
 # Install Android SDK
 RUN mkdir -p /usr/local/android-sdk-linux \
-    && apt-get update \
     && wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O tools.zip \
     && unzip tools.zip -d /usr/local/android-sdk-linux \
     && rm tools.zip
@@ -39,7 +40,9 @@ RUN mkdir -p /root/.android \
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash \
     && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
-    && apt-get update && apt-get install -y yarn
+    && apt-get update && apt-get install -y yarn \
+    && apt-get -y autoclean \
+    && apt-get -y autoremove
 
 
 RUN yarn global add react-native-cli rnpm babel-cli
